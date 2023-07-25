@@ -1,0 +1,4 @@
+#版本号 我的建议是不要自己改~
+version: ${project.version}
+#填 SX 或 AP
+depend: "SX"
