@@ -1,0 +1,202 @@
+##基本设置
+#不可重复! 用于插件识别,使用命令/xes openInv default 打开装备栏。
+name: default
+#是否检测权限,如果为true则会检测XgpEquipmentSlot.open.default(<-为上方的name)。
+permission: false
+
+##GUI设置
+GUI:
+  title: "&b%Player_name%&6的default 装备栏"
+  #每排9个字符。
+  layout:
+    - "#########"
+    - "#AE#@#IM#"
+    - "#BFO#PJM#"
+    - "#CG###KN#"
+    - "#DH###LN#"
+    - "#########"
+##GUI中的物品
+items:
+  #基本配置
+  "#":
+    #1.12:https://docs.zoyn.top/bukkitapi/1.12.2/org/bukkit/Material.html
+    #1.13+:https://bukkit.windit.net/javadoc/org/bukkit/Material.html
+    #1.12为分界线 material有部分变化,此处例子基于1.12.2
+    #如不填写默认为石头(STONE)
+    material: STAINED_GLASS_PANE
+    #1.12及以下版本使用,如7为灰色玻璃板。(可选项)
+    damage: 7
+    #显示数量(可选项)
+    amount: 1
+    displayName: "&7我是边界捏~"
+    lore:
+      - "&7别看了! 你还想把我拿走吗?"
+      - "&4支持占位符！%Player_name%"
+  #通过nbt配置 这样就可以用ia了(不是） 在游戏中执行指令获得手中物品的nbt /xes nbt
+  "@":
+    nbt: "{id:\"minecraft:golden_helmet\",Count:1b,tag:{ench:[{lvl:2s,id:20s}],RepairCost:1,display:{Name:\"金头盔喵~\"}},Damage:0s}"
+    #下面也可以加上lore和displayName.可你为什么要这样做呢！？
+  "A":
+    #装备槽, 设置与“#”相同,用于显示玩家无装备的状态。
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6头部"
+    lore:
+      - "&9装备方式: &b将头盔拖到此处点击!"
+    #详细配置装备槽信息
+    equipmentSlot:
+      #可使用命令/xes tag add helmet 添加nbtTag 物品会添加"XgpES:helmet"nbt标签,填写此项则会检验物品是否拥有该tag,物品交易可能会受到影响!
+      type: "helmet"
+      #使用lore作为判断依据,设置此项则也会对lore进行判断,只要lore中包含这个字符串就会成功,即使是 "一头盔甲" 。这两种方法有一种成功则可以穿戴。
+      lore: "头盔"
+  "B":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6项链"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "necklace"
+      lore: "项链"
+  "C":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6肩部"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "shoulder"
+      lore: "肩部"
+  "D":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6背部"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "back"
+      lore: "背部"
+  "E":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6胸部"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "chest"
+      lore: "胸部"
+  "F":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6衬衣"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "shirt"
+      lore: "衬衣"
+  "G":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6战袍"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "tabard"
+      lore: "背部"
+  "H":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6护腕"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "bracers"
+      lore: "护腕"
+  "I":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6手套"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "gloves"
+      lore: "手套"
+  "J":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6腰带"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "belt"
+      lore: "腰带"
+  "K":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6腿部"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "leggings"
+      lore: "腿部"
+  "L":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6脚部"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "boots"
+      lore: "脚部"
+  "M":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6戒指"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "ring"
+      lore: "戒指"
+  "N":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6饰品"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "trinket"
+      lore: "饰品"
+  "O":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6主手"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "mainHand"
+      lore: "主手"
+  "P":
+    material: STAINED_GLASS_PANE
+    damage: 1
+    amount: 1
+    displayName: "&6副手"
+    lore:
+      - "&9喵喵喵!"
+    equipmentSlot:
+      type: "offHand"
+      lore: "副手"

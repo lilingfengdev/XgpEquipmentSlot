@@ -1,0 +1,26 @@
+mysql:
+  url: 127.0.0.1:3306
+  #请自行新建数据库！
+  database: xgpequipmentslot
+  username: root
+  password: 123456
+redis:
+  #host ... 就是host啦,基本上是本地redis就不用动
+  host: "localhost"
+  #你的redis的端口号
+  port: 6379
+  #如果有密码的话！
+  password: ""
+  #使用的数据库 取0-15
+  database: 0
+  #连接超时时间 单位毫秒
+  timeout: 5000
+  #redis客户端名称
+  clientName: "XES_client"
+  #连接池最大连接数
+  maxTotal: 50
+  #连接池最大空闲连接数
+  maxIdle: 10
+  #连接池最小空闲连接数
+  minIdle: 5
+

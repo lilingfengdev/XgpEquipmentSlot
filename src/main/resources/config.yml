@@ -1,4 +1,18 @@
 #版本号 我的建议是不要自己改~
-version: ${project.version}
+version: 1.0.0
 #填 SX 或 AP
 depend: "SX"
+#是否启用mysql 为true则在database.yml中填写相关信息.
+mysql: false
+#不使用mysql时,sqlite文件的位置. 请填写绝对路径!
+#如: "D:\\minecraft\\Server1.12.2\\plugins\\XgpEquipmentSlot\\data.db"
+#记得打两个 -> '\'
+#留空为默认位置。
+sqlite: ""
+#sqlite文件存储还是太慢了?  快来使用redis！
+#是否使用redis缓存, 请在database.yml中详细配置.
+redis: false
+#是否检测新版本信息并提醒
+checkNewVersion: true
+#是否禁用原版装备栏
+disableRawEquipmentSlot: false

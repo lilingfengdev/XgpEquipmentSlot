@@ -1,4 +1,4 @@
-package cn.xgpjun.xgpequipmentslot.Pojo;
+package cn.xgpjun.xgpequipmentslot.EquipmentSlot;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

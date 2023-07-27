@@ -1,5 +1,15 @@
 name: XgpEquipmentSlot
-version: '${project.version}'
+version: ${project.version}
 main: cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot
-api-version: '1.16'
+api-version: '1.13'
 authors: [1badsobig]
+
+softdepend:
+  - SX-Attribute
+  - AttributePlus
+  - PlaceholderAPI
+
+commands:
+  XgpEquipmentSlot:
+    aliases:
+      - xes
