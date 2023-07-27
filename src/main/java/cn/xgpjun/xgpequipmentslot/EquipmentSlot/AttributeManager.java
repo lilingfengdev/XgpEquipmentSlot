@@ -9,9 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.serverct.ersha.AttributePlus;
 import org.serverct.ersha.api.AttributeAPI;
-import org.serverct.ersha.attribute.data.AttributeData;
 import org.serverct.ersha.attribute.data.AttributeSource;
 
 import java.util.ArrayList;

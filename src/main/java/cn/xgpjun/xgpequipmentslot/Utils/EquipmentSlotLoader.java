@@ -54,7 +54,10 @@ public class EquipmentSlotLoader {
                 if(nbt!=null){
                     guiItem = new MyItem(NMSUtils.toItem(nbt));
                 } else{
-                    guiItem = new MyItem(Material.getMaterial(item.getString("material","STONE")),item.getInt("amount",1), (byte) item.getInt("damage",0));
+                    Material material = Material.getMaterial(item.getString("material","STONE"));
+                    if(material==null)
+                        material = Material.STONE;
+                    guiItem = new MyItem(material,item.getInt("amount",1), (byte) item.getInt("damage",0));
                 }
                 String displayName = item.getString("displayName");
                 if(displayName!=null){
@@ -81,6 +84,7 @@ public class EquipmentSlotLoader {
                 }
             }
             new EquipmentSlot(name,permission,title,layout,guiItems,slotInfo).addToGlobal();
+            XgpEquipmentSlot.log("成功读取配置:"+yamlFile.getName()+" | name="+name);
 
         }
 

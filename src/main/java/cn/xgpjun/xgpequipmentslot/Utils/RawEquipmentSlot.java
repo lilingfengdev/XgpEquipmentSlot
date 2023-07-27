@@ -10,6 +10,8 @@ public class RawEquipmentSlot {
         // 创建一个定时任务，每隔一段时间检查玩家的装备栏
         Bukkit.getScheduler().runTaskTimerAsynchronously(XgpEquipmentSlot.getInstance(),()->{
             for(Player player: Bukkit.getOnlinePlayers()){
+                if(player.hasPermission("XgpES.bypass"))
+                    continue;
                 ItemStack[] equipment = player.getInventory().getArmorContents();
                 boolean save = false;
                 for (int i=0;i<equipment.length;i++){

@@ -4,7 +4,6 @@ import cn.xgpjun.xgpequipmentslot.Command.MainCommand;
 import cn.xgpjun.xgpequipmentslot.Utils.Message;
 import cn.xgpjun.xgpequipmentslot.Utils.NMSUtils;
 import cn.xgpjun.xgpequipmentslot.Utils.VersionAdapterUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -13,7 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Tag implements TabExecutor {
     /*

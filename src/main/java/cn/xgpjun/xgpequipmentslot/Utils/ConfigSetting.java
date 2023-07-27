@@ -12,6 +12,7 @@ public class ConfigSetting {
     public static boolean redis;
     public static boolean checkNewVersion;
     public static boolean disableRawEquipmentSlot;
+    public static String defaultEquipmentSlot;
     public static void load(Configuration config){
         version=config.getString("version","1.0.0");
         depend= config.getString("depend","SX");
@@ -20,6 +21,7 @@ public class ConfigSetting {
         redis = config.getBoolean("redis",false);
         checkNewVersion = config.getBoolean("checkNewVersion",true);
         disableRawEquipmentSlot = config.getBoolean("disableRawEquipmentSlot",false);
+        defaultEquipmentSlot = config.getString("defaultEquipmentSlot","default");
         if(checkNewVersion){
             Bukkit.getScheduler().runTaskAsynchronously(XgpEquipmentSlot.getInstance(), NewVersionUtils::checkNewVersion);
         }

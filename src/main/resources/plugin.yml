@@ -13,3 +13,6 @@ commands:
   XgpEquipmentSlot:
     aliases:
       - xes
+permissions:
+  XgpES.bypass:
+    default: op

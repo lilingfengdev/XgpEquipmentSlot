@@ -19,6 +19,8 @@ public class Message {
     public static String openInv2;
     public static String openInv3;
     public static String openInv4;
+    public static String openInv5;
+    public static String openInv6;
     public static String reload1;
     public static String reload2;
     public static String reloadSuccessfully;
@@ -50,6 +52,8 @@ public class Message {
         openInv2 = getString("command.openInv2","&a打开指定名称(name)的装备栏。");
         openInv3 = getString("command.openInv3","&b/xes openInv <装备栏名称> <玩家名称>");
         openInv4 = getString("command.openInv4","&a查看指定玩家的装备栏,记得确认大小写!");
+        openInv5 = getString("command.openInv5","&b/xes openInv");
+        openInv6 = getString("command.openInv6","&a打开默认装备栏");
         reload1 = getString("command.reload1","&b/xes reload");
         reload2 = getString("command.reload2","&a重载插件~ 请不要使用plugman启用捏!");
         reloadSuccessfully = getString("command.reloadSuccessfully","&a重载成功~(如果后台没报错的话)");

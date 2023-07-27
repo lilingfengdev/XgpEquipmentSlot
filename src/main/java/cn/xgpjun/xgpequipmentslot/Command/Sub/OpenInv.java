@@ -2,9 +2,9 @@ package cn.xgpjun.xgpequipmentslot.Command.Sub;
 
 import cn.xgpjun.xgpequipmentslot.Command.MainCommand;
 import cn.xgpjun.xgpequipmentslot.EquipmentSlot.EquipmentSlot;
+import cn.xgpjun.xgpequipmentslot.Utils.ConfigSetting;
 import cn.xgpjun.xgpequipmentslot.Utils.Message;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -23,12 +23,25 @@ public class OpenInv implements TabExecutor {
             sender.sendMessage(Message.prefix+Message.playerOnly);
             return true;
         }
-        if(args.length!=2&&args.length!=3){
+        if(args.length!=1&&args.length!=2&&args.length!=3){
             sender.sendMessage(Message.prefix+Message.incorrectInput);
             sender.sendMessage(Message.openInv1);
             sender.sendMessage(Message.openInv2);
             sender.sendMessage(Message.openInv3);
             sender.sendMessage(Message.openInv4);
+            sender.sendMessage(Message.openInv5);
+            sender.sendMessage(Message.openInv6);
+            return true;
+        }
+        Player player = (Player) sender;
+        if(args.length==1){
+            String def = ConfigSetting.defaultEquipmentSlot;
+            if(!EquipmentSlot.getEquipmentSlots().containsKey(def)){
+                sender.sendMessage(Message.prefix+Message.notFound);
+                return true;
+            }
+            EquipmentSlot equipmentSlot = EquipmentSlot.getEquipmentSlots().get(def);
+            player.openInventory(equipmentSlot.getGui(player));
             return true;
         }
         String name = args[1];
@@ -36,7 +49,6 @@ public class OpenInv implements TabExecutor {
             sender.sendMessage(Message.prefix+Message.notFound);
             return true;
         }
-        Player player = (Player) sender;
         EquipmentSlot equipmentSlot = EquipmentSlot.getEquipmentSlots().get(name);
         if(args.length==3){
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[2]);

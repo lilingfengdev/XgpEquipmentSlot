@@ -2,7 +2,6 @@ package cn.xgpjun.xgpequipmentslot.Command.Sub;
 
 import cn.xgpjun.xgpequipmentslot.Utils.Message;
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;

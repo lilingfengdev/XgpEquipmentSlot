@@ -32,6 +32,7 @@ items:
     lore:
       - "&7别看了! 你还想把我拿走吗?"
       - "&4支持占位符！%Player_name%"
+  #！测试功能！ 谨慎使用233
   #通过nbt配置 这样就可以用ia了(不是） 在游戏中执行指令获得手中物品的nbt /xes nbt
   "@":
     nbt: "{id:\"minecraft:golden_helmet\",Count:1b,tag:{ench:[{lvl:2s,id:20s}],RepairCost:1,display:{Name:\"金头盔喵~\"}},Damage:0s}"

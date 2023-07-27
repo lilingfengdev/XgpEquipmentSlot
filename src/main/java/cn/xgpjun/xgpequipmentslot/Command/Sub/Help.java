@@ -21,6 +21,8 @@ public class Help implements TabExecutor {
             sender.sendMessage(Message.openInv2);
             sender.sendMessage(Message.openInv3);
             sender.sendMessage(Message.openInv4);
+            sender.sendMessage(Message.openInv5);
+            sender.sendMessage(Message.openInv6);
             sender.sendMessage(Message.reload1);
             sender.sendMessage(Message.reload2);
             sender.sendMessage(Message.tag1);
@@ -33,6 +35,8 @@ public class Help implements TabExecutor {
             sender.sendMessage(Message.openInv2);
             sender.sendMessage(Message.openInv3);
             sender.sendMessage(Message.openInv4);
+            sender.sendMessage(Message.openInv5);
+            sender.sendMessage(Message.openInv6);
         }
         return true;
     }
