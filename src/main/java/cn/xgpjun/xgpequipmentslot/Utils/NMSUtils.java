@@ -140,7 +140,7 @@ public class NMSUtils {
             Object nmsItemStack = asNMSCopy.invoke(CraftItemStack,item);
             Object tags = getTag.invoke(nmsItemStack);
             if(tags==null){
-                return null;
+                tags = nbtTagCompound.newInstance();
             }
             String key = "XgpES";
             setString.invoke(tags,key,tag);
@@ -156,7 +156,7 @@ public class NMSUtils {
             Object nmsItemStack = asNMSCopy.invoke(CraftItemStack,item);
             Object tags = getTag.invoke(nmsItemStack);
             if(tags==null){
-                return null;
+                tags = nbtTagCompound.newInstance();
             }
             String key = "XgpES";
             remove.invoke(tags,key);
@@ -176,7 +176,7 @@ public class NMSUtils {
             Object tags = getTag.invoke(nmsItemStack);
             if(tags==null)
                 return false;
-            String key = "XES";
+            String key = "XgpES";
             Object str = getString.invoke(tags,key);
             return tag.equals(str);
         }catch (Exception e){

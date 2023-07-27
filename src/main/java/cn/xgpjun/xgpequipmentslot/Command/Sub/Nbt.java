@@ -45,11 +45,13 @@ public class Nbt implements TabExecutor {
             return true;
         }
         String nbt = NMSUtils.toNBTString(itemStack);
+        String str = nbt.replace("\"", "\\\"");
+
         TextComponent prefix = new TextComponent(Message.prefix);
         TextComponent text = new TextComponent(Message.nbtCopy);
         text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new BaseComponent[]{new TextComponent(nbt)}));
         try{
-            text.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD,nbt));
+            text.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD,str));
             prefix.addExtra(text);
             player.spigot().sendMessage(prefix);
         }catch (NoSuchFieldError e){
@@ -62,10 +64,10 @@ public class Nbt implements TabExecutor {
                 }
             }
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(log, true))) {
-                writer.newLine(); //回车
                 writer.write(getName(itemStack));
                 writer.newLine();
-                writer.write(nbt);
+                writer.write(str);
+                writer.newLine(); //回车
                 player.sendMessage(Message.prefix+Message.nbtLog);
             } catch (IOException ex) {
                 ex.printStackTrace();
