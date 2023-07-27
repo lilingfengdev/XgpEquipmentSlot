@@ -20,6 +20,7 @@ public class MainCommand implements TabExecutor {
         registerSubCommand("openInv",new OpenInv());
         registerSubCommand("reload",new Reload());
         registerSubCommand("nbt",new Nbt());
+        registerSubCommand("test",new Test());
     }
     private void registerSubCommand(String subCommand, TabExecutor executor) {
         subCommands.put(subCommand.toLowerCase(), executor);

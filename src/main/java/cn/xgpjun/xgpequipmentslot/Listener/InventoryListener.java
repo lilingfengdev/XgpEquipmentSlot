@@ -12,8 +12,10 @@ public class InventoryListener implements Listener {
     public void handleClick(InventoryClickEvent e){
         if(e.getInventory().getHolder()==null||!(e.getInventory().getHolder() instanceof XESHolder))
             return;
-        if(e.isShiftClick())
+        if(e.isShiftClick()){
             e.setCancelled(true);
+            return;
+        }
         if((e.getRawSlot()>=0&&e.getRawSlot()<=53))
             e.setCancelled(true);
         ((XESHolder) e.getInventory().getHolder()).handleClick(e);

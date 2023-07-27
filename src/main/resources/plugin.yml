@@ -7,6 +7,7 @@ authors: [1badsobig]
 softdepend:
   - SX-Attribute
   - AttributePlus
+  - ZF-Runes
   - PlaceholderAPI
 
 commands:

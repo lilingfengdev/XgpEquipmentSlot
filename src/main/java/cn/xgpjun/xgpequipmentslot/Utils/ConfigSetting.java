@@ -1,5 +1,6 @@
 package cn.xgpjun.xgpequipmentslot.Utils;
 
+import cn.xgpjun.xgpequipmentslot.Database.DataManager;
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
@@ -37,6 +38,17 @@ public class ConfigSetting {
             depend = "AP";
         XgpEquipmentSlot.getInstance().getConfig().set("depend",depend);
         XgpEquipmentSlot.getInstance().saveConfig();
+    }
+    public static void update(){
+        if(getVersionToInt(version)==100){
+            DataManager.dropPrimaryKey();
+        }
+        version = XgpEquipmentSlot.getInstance().getDescription().getVersion();
+        XgpEquipmentSlot.getInstance().getConfig().set("version",version);
+        XgpEquipmentSlot.getInstance().saveConfig();
+    }
+    static int getVersionToInt(String version){
+        return Integer.parseInt(version.split("\\.")[0])*100+Integer.parseInt(version.split("\\.")[1])*10+Integer.parseInt(version.split("\\.")[2]);
     }
 
 }

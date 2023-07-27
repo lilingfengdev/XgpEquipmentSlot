@@ -1,10 +1,10 @@
 package cn.xgpjun.xgpequipmentslot.Gui.Impl;
 
+import cn.xgpjun.xgpequipmentslot.Database.DataManager;
 import cn.xgpjun.xgpequipmentslot.EquipmentSlot.AttributeManager;
+import cn.xgpjun.xgpequipmentslot.EquipmentSlot.EquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.EquipmentSlot.PlayerSlotInfo;
 import cn.xgpjun.xgpequipmentslot.Gui.XESHolder;
-import cn.xgpjun.xgpequipmentslot.EquipmentSlot.EquipmentSlot;
-import cn.xgpjun.xgpequipmentslot.Database.DataManager;
 import cn.xgpjun.xgpequipmentslot.Utils.GiveItemsUtils;
 import cn.xgpjun.xgpequipmentslot.Utils.Memory;
 import cn.xgpjun.xgpequipmentslot.Utils.Message;
@@ -62,17 +62,17 @@ public class EquipmentSlotInventory extends XESHolder {
 
     @Override
     public void handleClick(InventoryClickEvent e) {
+        int slot = e.getRawSlot();
+        if(equipmentSlot.getSlotInfo().get(slot)==null){
+            return;
+        }
         //检验磁盘空间
         if(!Memory.checkFreeSpace()){
             e.getWhoClicked().sendMessage(Message.noFreeSpace);
             Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> e.getWhoClicked().closeInventory());
             return;
         }
-        int slot = e.getRawSlot();
         Player player = (Player) e.getWhoClicked();
-        if(equipmentSlot.getSlotInfo().get(slot)==null){
-            return;
-        }
         OfflinePlayer owner = Bukkit.getOfflinePlayer(playerSlotInfo.getPlayer());
         if(owner.getPlayer()!=null&&owner.getPlayer().getUniqueId()!=player.getUniqueId()&&!player.isOp()){
             return;
@@ -92,7 +92,7 @@ public class EquipmentSlotInventory extends XESHolder {
             Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
 
             DataManager.savePlayerSlotInfo(playerSlotInfo);
-            AttributeManager.addAttribute(owner.getPlayer(), playerSlotInfo);
+            AttributeManager.addAttribute(owner.getPlayer());
         }else {
             //可以穿上
             if(equipmentSlot.canWear(slot, owner.getPlayer() ,cursorItem)){
@@ -106,7 +106,7 @@ public class EquipmentSlotInventory extends XESHolder {
                 playerSlotInfo.getEquipments().put(slot,cursorItem);
                 Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
                 DataManager.savePlayerSlotInfo(playerSlotInfo);
-                AttributeManager.addAttribute(owner.getPlayer(), playerSlotInfo);
+                AttributeManager.addAttribute(owner.getPlayer());
             }
         }
     }

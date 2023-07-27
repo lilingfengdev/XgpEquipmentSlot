@@ -38,6 +38,7 @@ public class DatabaseManager {
 
         dataSource = new HikariDataSource(config);
         createTable();
+//        dropPrimaryKey();
     }
     public void savePlayerSlotInfo(PlayerSlotInfo playerSlotInfo){
         String name = playerSlotInfo.getName();
@@ -105,11 +106,36 @@ public class DatabaseManager {
     private void createTable() {
         try(Connection connection = getDataSource().getConnection();
             Statement statement = connection.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS XES_PlayerEquipmentData (player varchar(40) PRIMARY KEY, name TEXT, items TEXT)";
+            String sql = "CREATE TABLE IF NOT EXISTS XES_PlayerEquipmentData (player varchar(40) , name TEXT, items LONGTEXT)";
             statement.execute(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void dropPrimaryKey(){
+        try(Connection connection = getDataSource().getConnection();
+            Statement statement = connection.createStatement()) {
+            String tableName = "XES_PlayerEquipmentData";
+            if(ConfigSetting.mysql){
+                String alterTableSQL = "ALTER TABLE " + tableName + " MODIFY COLUMN items LONGTEXT";
+                String drop = "ALTER TABLE "+tableName+" DROP PRIMARY KEY";
+
+                statement.execute(alterTableSQL);
+                statement.execute(drop);
+            }else {
+                String createTempTableSQL = "CREATE TABLE temp_table AS SELECT player, name,items FROM " + tableName;
+                String dropTableSQL = "DROP TABLE " + tableName;
+                String renameTableSQL = "ALTER TABLE temp_table RENAME TO " + tableName;
+
+                statement.execute(createTempTableSQL);
+                statement.execute(dropTableSQL);
+                statement.execute(renameTableSQL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void close(){

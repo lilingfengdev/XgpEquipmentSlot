@@ -1,8 +1,10 @@
-package cn.xgpjun.xgpequipmentslot.Utils;
+package cn.xgpjun.xgpequipmentslot.EquipmentSlot;
 
-import cn.xgpjun.xgpequipmentslot.EquipmentSlot.EquipmentSlot;
-import cn.xgpjun.xgpequipmentslot.EquipmentSlot.Slot;
+import cn.xgpjun.xgpequipmentslot.Utils.Message;
+import cn.xgpjun.xgpequipmentslot.Utils.MyItem;
+import cn.xgpjun.xgpequipmentslot.Utils.NMSUtils;
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -16,10 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 public class EquipmentSlotLoader {
-
     //读取EquipmentSlot文件夹中的文件信息。
     public static void loadEquipmentSlot(){
-        //清除
+        Bukkit.getScheduler().runTaskAsynchronously(XgpEquipmentSlot.getInstance(),EquipmentSlotLoader::load);
+    }
+
+    private static void load(){
         EquipmentSlot.equipmentSlots.clear();
         // 子文件夹EquipmentSlot
         File equipmentSlotFolder = new File(XgpEquipmentSlot.getInstance().getDataFolder(), "EquipmentSlot");
@@ -36,7 +40,7 @@ public class EquipmentSlotLoader {
             YamlConfiguration yaml = YamlConfiguration.loadConfiguration(yamlFile);
             String name = yaml.getString("name");
             boolean permission = yaml.getBoolean("permission",false);
-            String title = ChatColor.translateAlternateColorCodes('&',yaml.getString("GUI.title",Message.defaultTitle));
+            String title = ChatColor.translateAlternateColorCodes('&',yaml.getString("GUI.title", Message.defaultTitle));
             List<String> layout = yaml.getStringList("GUI.layout");
             ConfigurationSection items = yaml.getConfigurationSection("items");
             if(items==null||name==null||layout.isEmpty())
@@ -87,7 +91,5 @@ public class EquipmentSlotLoader {
             XgpEquipmentSlot.log("成功读取配置:"+yamlFile.getName()+" | name="+name);
 
         }
-
     }
-
 }

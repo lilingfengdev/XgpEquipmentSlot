@@ -1,10 +1,9 @@
 package cn.xgpjun.xgpequipmentslot.EquipmentSlot;
 
-import cn.xgpjun.xgpequipmentslot.Gui.Impl.EquipmentSlotInventory;
 import cn.xgpjun.xgpequipmentslot.Database.DataManager;
+import cn.xgpjun.xgpequipmentslot.Gui.Impl.EquipmentSlotInventory;
 import cn.xgpjun.xgpequipmentslot.Utils.ConfigSetting;
 import cn.xgpjun.xgpequipmentslot.Utils.NMSUtils;
-import github.saukiya.sxattribute.data.PreLoadItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -52,7 +51,7 @@ public class EquipmentSlot {
             }
             //SX判断
             try{
-                if(!AttributeManager.sxapi.isUse(player,new PreLoadItem(equipment),equipment.getItemMeta().getLore())){
+                if(!AttributeManager.isUse(player,equipment)){
                     return false;
                 }
             }catch (Exception ignored){
@@ -95,5 +94,4 @@ public class EquipmentSlot {
 
         return false;
     }
-
 }

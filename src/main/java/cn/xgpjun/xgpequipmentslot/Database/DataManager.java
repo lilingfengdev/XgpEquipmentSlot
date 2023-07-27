@@ -57,6 +57,9 @@ public class DataManager {
         }
         return playerSlotInfo;
     }
+    public static void dropPrimaryKey(){
+        databaseManager.dropPrimaryKey();
+    }
 
     public static void close(){
         if(databaseManager!=null)
