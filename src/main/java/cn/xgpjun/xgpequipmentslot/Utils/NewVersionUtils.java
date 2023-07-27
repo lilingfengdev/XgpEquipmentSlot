@@ -45,7 +45,8 @@ public class NewVersionUtils {
             response.append(line);
         }
         reader.close();
-        JsonObject json = JsonParser.parseString(response.toString()).getAsJsonObject();
+        JsonParser jsonParser = new JsonParser();
+        JsonObject json = jsonParser.parse(response.toString()).getAsJsonObject();
         return json.get("tag_name").toString().replace("\"","");
     }
 
