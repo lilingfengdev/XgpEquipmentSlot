@@ -15,10 +15,12 @@ command:
   reload1: "&b/xes reload"
   reload2: "&a重载插件~ 请不要使用plugman启用捏!"
   reloadSuccessfully: "&a重载成功~(如果后台没报错的话)"
-  tag1: "&b/xes tag add <tag>"
-  tag2: "&a手持物品,向手中的物品添加tag,用于配置中的检验."
+  tag1: "&b/xes tag addEquip <tag>"
+  tag2: "&a手持物品,向手中的物品添加装备tag,用于配置中装备的检验."
   tag3: "&b/xes tag remove"
   tag4: "&a手持物品,移除本插件添加的tag"
+  tag5: "&b/xes tag addSet <tag>"
+  tag6: "&a手持物品,向手中的物品添加套装tag,用于配置中套装的检验."
   help1: "&c/xes help 获得帮助!"
   nbt1: "&b/xes nbt"
   nbt2: "&a获得手中物品的nbt/1.12.2版本会输出在插件文件夹的nbt.txt中"
@@ -27,5 +29,4 @@ command:
 
 defaultTitle: "&7无标题"
 disableRawEquipmentSlot: "&c本服禁用了原版装备栏!"
-
 

@@ -6,7 +6,7 @@
 
     <groupId>cn.xgpjun</groupId>
     <artifactId>XgpEquipmentSlot</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <name>XgpEquipmentSlot</name>
@@ -39,11 +39,11 @@
                         </relocation>
                         <relocation>
                             <pattern>com.zaxxer</pattern>
-                            <shadedPattern>cn.xgpjun.xgpequipmentslot.Database.HikariCP</shadedPattern>
+                            <shadedPattern>cn.xgpjun.xgpequipmentslot.database.hikariCP</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>redis.clients</pattern>
-                            <shadedPattern>cn.xgpjun.xgpequipmentslot.Database.Jedis</shadedPattern>
+                            <shadedPattern>cn.xgpjun.xgpequipmentslot.database.jedis</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -83,6 +83,15 @@
             <url>https://nexus.phoenixdevt.fr/repository/maven-public/</url>
         </repository>
         <repository>
+            <id>nexus</id>
+            <name>Lumine Releases</name>
+            <url>https://mvn.lumine.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>r.irepo.space</id>
+            <url>https://r.irepo.space/maven/</url>
+        </repository>
+        <repository>
             <id>rosewood-repo</id>
             <url>https://repo.rosewooddev.io/repository/public/</url>
         </repository>
@@ -120,7 +129,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.28</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -153,7 +162,24 @@
             <version>3.7.0</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.LoneDev6</groupId>
+            <artifactId>api-itemsadder</artifactId>
+            <version>3.5.0b</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>pers.neige.neigeitems</groupId>
+            <artifactId>NeigeItems</artifactId>
+            <version>1.15.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine</groupId>
+            <artifactId>Mythic-Dist</artifactId>
+            <version>5.3.5</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>net.Indyuce</groupId>
             <artifactId>MMOItems-API</artifactId>
@@ -161,14 +187,25 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>github.saukiya</groupId>
-            <artifactId>MythicLib</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/MythicLib-1.6.1.jar</systemPath>
+            <groupId>io.lumine</groupId>
+            <artifactId>MythicLib-dist</artifactId>
+            <version>1.5.2-SNAPSHOT</version>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
 
+        <!-- 由于部分依赖没有给出对应的maven仓库 -->
+        <!--以下的依赖请自行下载/构建后放在根目录libs文件夹 -->
+        <!--在此构建：https://gitee.com/amazing-ocean-origin/origin-attribute -->
+        <dependency>
+            <groupId>OA</groupId>
+            <artifactId>OriginAttribute</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/OriginAttribute-2.0.1 beta-25.jar</systemPath>
+        </dependency>
 
+        <!-- 在此下载：https://www.mcbbs.net/thread-1083840-1-1.html -->
         <dependency>
             <groupId>github.saukiya</groupId>
             <artifactId>sxattribute</artifactId>
@@ -176,6 +213,7 @@
             <scope>system</scope>
             <systemPath>${basedir}/libs/SX-Attribute.jar</systemPath>
         </dependency>
+        <!--在此下载： https://www.mcbbs.net/thread-793362-1-2.html -->
         <dependency>
             <groupId>github.saukiya</groupId>
             <artifactId>sxattribute2</artifactId>
@@ -183,6 +221,7 @@
             <scope>system</scope>
             <systemPath>${basedir}/libs/SX-Attribute-2.0.3.jar</systemPath>
         </dependency>
+        <!--可以在此下载: https://www.mcbbs.net/forum.php?mod=redirect&goto=findpost&ptid=1459332&pid=28801804  -->
         <dependency>
             <groupId>github.saukiya</groupId>
             <artifactId>ZF-Runes</artifactId>
@@ -190,9 +229,10 @@
             <scope>system</scope>
             <systemPath>${basedir}/libs/ZF-Runes.jar</systemPath>
         </dependency>
+        <!-- https://www.mcbbs.net/thread-898670-1-1.html -->
         <dependency>
             <groupId>org.serverct</groupId>
-            <artifactId>ersha</artifactId>
+            <artifactId>AttributePlus</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/libs/AttributePlus-3.3.1.2.jar</systemPath>

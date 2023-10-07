@@ -32,11 +32,18 @@ items:
     lore:
       - "&7别看了! 你还想把我拿走吗?"
       - "&4支持占位符！%Player_name%"
-  #！测试功能！ 谨慎使用233
-  #通过nbt配置 这样就可以用ia了(不是） 在游戏中执行指令获得手中物品的nbt /xes nbt
+    #点击执行命令 仅支持玩家身份执行命令, 支持占位符。
+    command:
+      - "xes openinv default"
+    #检查权限, 如果像这样写的话就会检测XgpEquipmentSlot.default.#
+    #如果没有权限则不可以操作、以及上方的执行命令。
+    permission: "#"
+
+  #支持物品库 ItemsAdder/NeigeItem/MythicMobs
   "@":
-    nbt: "{id:\"minecraft:golden_helmet\",Count:1b,tag:{ench:[{lvl:2s,id:20s}],RepairCost:1,display:{Name:\"金头盔喵~\"}},Damage:0s}"
-    #下面也可以加上lore和displayName.可你为什么要这样做呢！？
+    # ia: "icon_left_blue"
+    # ni: "ExampleItem"
+    # mm: "SkeletonKingSword"
   "A":
     #装备槽, 设置与“#”相同,用于显示玩家无装备的状态。
     material: STAINED_GLASS_PANE
@@ -51,6 +58,8 @@ items:
       type: "helmet"
       #使用lore作为判断依据,设置此项则也会对lore进行判断,只要lore中包含这个字符串就会成功,即使是 "一头盔甲" 。这两种方法有一种成功则可以穿戴。
       lore: "头盔"
+      #使用正则表达式匹配lore, 你会的话肯定会, 不会的话我也没办法.
+      regex: ".*?头盔.*"
   "B":
     material: STAINED_GLASS_PANE
     damage: 1

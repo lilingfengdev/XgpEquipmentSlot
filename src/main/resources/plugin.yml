@@ -9,6 +9,12 @@ softdepend:
   - AttributePlus
   - ZF-Runes
   - PlaceholderAPI
+  - MMOItems
+  - MythicLib
+  - ItemsAdder
+  - NeigeItems
+  - MythicMobs
+  - OriginAttribute
 
 commands:
   XgpEquipmentSlot:

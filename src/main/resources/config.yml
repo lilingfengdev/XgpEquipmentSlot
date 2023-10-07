@@ -1,7 +1,7 @@
 #版本号 我的建议是不要自己改~
-version: 1.0.0
+version: ${project.version}
 
-#填 SX 或 AP
+#填 属性前置，可选项为'SX' 'AP' 'MMO' 'OA'
 depend: "SX"
 
 #是否启用mysql 为true则在database.yml中填写相关信息.

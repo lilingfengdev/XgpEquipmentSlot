@@ -1,15 +1,17 @@
 package cn.xgpjun.xgpequipmentslot;
 
-import cn.xgpjun.xgpequipmentslot.ArmorSet.ArmorSetLoader;
-import cn.xgpjun.xgpequipmentslot.Command.MainCommand;
-import cn.xgpjun.xgpequipmentslot.Database.DataManager;
-import cn.xgpjun.xgpequipmentslot.EquipmentSlot.EquipmentSlotLoader;
-import cn.xgpjun.xgpequipmentslot.Listener.InventoryListener;
-import cn.xgpjun.xgpequipmentslot.Listener.PlayerListener;
-import cn.xgpjun.xgpequipmentslot.Utils.ConfigSetting;
-import cn.xgpjun.xgpequipmentslot.Utils.Message;
-import cn.xgpjun.xgpequipmentslot.Utils.RawEquipmentSlot;
+import cn.xgpjun.xgpequipmentslot.api.XESAPI;
+import cn.xgpjun.xgpequipmentslot.armorSet.ArmorSetLoader;
+import cn.xgpjun.xgpequipmentslot.armorSet.bonus.Potions;
 import cn.xgpjun.xgpequipmentslot.bStats.Metrics;
+import cn.xgpjun.xgpequipmentslot.command.MainCommand;
+import cn.xgpjun.xgpequipmentslot.database.DataManager;
+import cn.xgpjun.xgpequipmentslot.equipmentSlot.EquipmentSlotLoader;
+import cn.xgpjun.xgpequipmentslot.listener.InventoryListener;
+import cn.xgpjun.xgpequipmentslot.listener.PlayerListener;
+import cn.xgpjun.xgpequipmentslot.utils.ConfigSetting;
+import cn.xgpjun.xgpequipmentslot.utils.Message;
+import cn.xgpjun.xgpequipmentslot.utils.RawEquipmentSlot;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -23,10 +25,13 @@ public final class XgpEquipmentSlot extends JavaPlugin {
     @Getter
     private static JavaPlugin instance;
 
+    @Getter
+    private static XESAPI api;
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        api = new XESAPI();
         Metrics.enable();
         if (!new File(getDataFolder(), "EquipmentSlot").exists()) {
             saveResource("EquipmentSlot/default.yml", false);
@@ -65,6 +70,7 @@ public final class XgpEquipmentSlot extends JavaPlugin {
                 e.printStackTrace();
             }
         }
+        Potions.init();
     }
 
     @Override
@@ -73,6 +79,7 @@ public final class XgpEquipmentSlot extends JavaPlugin {
         Objects.requireNonNull(Bukkit.getPluginCommand("XgpEquipmentSlot")).setExecutor(null);
         Bukkit.getScheduler().cancelTasks(this);
         DataManager.close();
+        Potions.cancel();
         // Plugin shutdown logic
     }
     public static void reload(){
