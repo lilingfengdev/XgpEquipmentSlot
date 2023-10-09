@@ -16,6 +16,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -80,7 +81,7 @@ public class EquipmentSlotInventory extends XESHolder {
             inv.setItem(slot,item);
         }
         InvLoadLayoutEvent event = new InvLoadLayoutEvent(playerSlotInfo.getPlayer(),this);
-        Bukkit.getPluginManager().callEvent(event);
+        Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
     }
 
     @Override
@@ -145,7 +146,10 @@ public class EquipmentSlotInventory extends XESHolder {
                     Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
                     DataManager.savePlayerSlotInfo(playerSlotInfo);
                     AttributeManager.addAttribute(owner.getPlayer());
-                    Bukkit.getPluginManager().callEvent(new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot));
+
+                    Event event = new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot);
+                    Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
+
                 }
             }else {
                 try {
@@ -170,7 +174,8 @@ public class EquipmentSlotInventory extends XESHolder {
                         e.setCurrentItem(null);
                         loadLayout();
                         Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
-                        Bukkit.getPluginManager().callEvent(new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot));
+                        Event event = new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot);
+                        Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
                         DataManager.savePlayerSlotInfo(playerSlotInfo);
                         AttributeManager.addAttribute(owner.getPlayer());
                     }
@@ -196,7 +201,8 @@ public class EquipmentSlotInventory extends XESHolder {
                     GiveItemsUtils.giveItem(player,rawItem);
                     loadLayout();
                     Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
-                    Bukkit.getPluginManager().callEvent(new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot));
+                    Event event = new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot);
+                    Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
 
                     DataManager.savePlayerSlotInfo(playerSlotInfo);
                     AttributeManager.addAttribute(owner.getPlayer());
@@ -214,7 +220,8 @@ public class EquipmentSlotInventory extends XESHolder {
                     playerSlotInfo.getEquipments().put(slot,cursorItem);
                     loadLayout();
                     Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> player.openInventory(getInventory()));
-                    Bukkit.getPluginManager().callEvent(new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot));
+                    Event event = new PlayerChangeEquipmentSlotEvent(player.getUniqueId(),equipmentSlot.getName(),slot);
+                    Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
                     DataManager.savePlayerSlotInfo(playerSlotInfo);
                     AttributeManager.addAttribute(owner.getPlayer());
                 }else {

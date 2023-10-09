@@ -13,6 +13,7 @@ import cn.xgpjun.xgpequipmentslot.utils.ConfigSetting;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 public class AttributeManager {
@@ -49,7 +50,9 @@ public class AttributeManager {
 
     }
     public static void addAttribute(Player player){
-        Bukkit.getPluginManager().callEvent(new UpdateAttributeEvent(player.getUniqueId()));
+        Event event = new UpdateAttributeEvent(player.getUniqueId());
+        Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()->Bukkit.getPluginManager().callEvent(event));
+
         Bukkit.getScheduler().runTaskAsynchronously(XgpEquipmentSlot.getInstance(),()->attributeAPI.updateAttribute(player));
     }
     public static boolean isUse(Player player, ItemStack itemStack){
