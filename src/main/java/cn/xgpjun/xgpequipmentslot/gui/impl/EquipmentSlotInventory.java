@@ -127,6 +127,10 @@ public class EquipmentSlotInventory extends XESHolder {
             }
         }
         //shift快速操作
+        if(e.isShiftClick()&&e.isRightClick()){
+            e.setCancelled(true);
+            return;
+        }
         if(e.isLeftClick()&&e.isShiftClick()){
             e.setCancelled(true);
             ItemStack clickItem = e.getCurrentItem();
