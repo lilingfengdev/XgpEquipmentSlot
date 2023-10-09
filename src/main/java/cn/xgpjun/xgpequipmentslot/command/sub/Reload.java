@@ -1,7 +1,9 @@
 package cn.xgpjun.xgpequipmentslot.command.sub;
 
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
+import cn.xgpjun.xgpequipmentslot.api.event.PluginReloadEvent;
 import cn.xgpjun.xgpequipmentslot.utils.Message;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -23,6 +25,7 @@ public class Reload implements TabExecutor {
             return true;
         }
         XgpEquipmentSlot.reload();
+        Bukkit.getPluginManager().callEvent(new PluginReloadEvent());
         sender.sendMessage(Message.prefix+Message.reloadSuccessfully);
         return true;
     }

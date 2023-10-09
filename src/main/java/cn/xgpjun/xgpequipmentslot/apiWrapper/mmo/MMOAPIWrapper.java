@@ -1,6 +1,7 @@
 package cn.xgpjun.xgpequipmentslot.apiWrapper.mmo;
 
 import cn.xgpjun.xgpequipmentslot.api.AttributeAPIWrapper;
+import cn.xgpjun.xgpequipmentslot.api.XESAPI;
 import cn.xgpjun.xgpequipmentslot.armorSet.ArmorSet;
 import cn.xgpjun.xgpequipmentslot.database.DataManager;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.EquipmentSlot;
@@ -44,7 +45,7 @@ public class MMOAPIWrapper implements AttributeAPIWrapper, PlayerInventory {
         List<ItemStack> list = new ArrayList<>();
         for(String name: EquipmentSlot.equipmentSlots.keySet()){
             PlayerSlotInfo playerSlotInfo = DataManager.loadPlayerSlotInfo(player.getUniqueId(),name);
-            list.addAll(playerSlotInfo.getEquipments().values());
+            list.addAll(playerSlotInfo.getAllItemStacks());
             for(String item: ArmorSet.getAttributes(playerSlotInfo)){
                 //套装效果
                 String[] strings = item.split(":",2);
@@ -54,6 +55,17 @@ public class MMOAPIWrapper implements AttributeAPIWrapper, PlayerInventory {
                 }
             }
         }
+        List<ItemStack> tempItems = new ArrayList<>();
+        XESAPI.getTempItems().forEach((s, uuidListMap) -> {
+            if(uuidListMap!=null){
+                uuidListMap.forEach((uuid, itemStacks) -> {
+                    if (player.getUniqueId().equals(uuid)&&itemStacks!=null){
+                        tempItems.addAll(itemStacks);
+                    }
+                });
+            }
+        });
+        list.addAll(tempItems);
         List<EquippedItem> result = new ArrayList<>();
         list.forEach(i-> result.add(new CustomEquippedItem(i)));
         return result;

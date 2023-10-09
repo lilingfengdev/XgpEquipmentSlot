@@ -65,6 +65,7 @@ public class SXAttributeAPIWrapperV2 extends SXAttributeAPIWrapper {
         for(String name: EquipmentSlot.equipmentSlots.keySet()){
             data.add(getAttribute(player,name));
         }
+        data.add(getTempAttribute(player));
         setEntityAPIData(player.getUniqueId(),data);
         attributeUpdate(player);
         ArmorSet.addPotionEffect(player);

@@ -6,7 +6,7 @@
 
     <groupId>cn.xgpjun</groupId>
     <artifactId>XgpEquipmentSlot</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.6</version>
     <packaging>jar</packaging>
 
     <name>XgpEquipmentSlot</name>

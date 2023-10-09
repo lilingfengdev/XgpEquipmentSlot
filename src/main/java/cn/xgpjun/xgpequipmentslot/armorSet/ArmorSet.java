@@ -79,7 +79,7 @@ public class ArmorSet {
             for (ArmorSet armorSet :armorSets.values()){
                 map.put(armorSet.name, 0);
             }
-            for(ItemStack item:playerSlotInfo.getEquipments().values()){
+            for(ItemStack item:playerSlotInfo.getAllItemStacks()){
                 if (item.getItemMeta()==null||!item.getItemMeta().hasLore())
                     continue;
                 for (String name: map.keySet()){

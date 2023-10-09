@@ -1,6 +1,7 @@
 package cn.xgpjun.xgpequipmentslot.gui.impl;
 
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
+import cn.xgpjun.xgpequipmentslot.api.event.InvLoadLayoutEvent;
 import cn.xgpjun.xgpequipmentslot.api.event.PlayerChangeEquipmentSlotEvent;
 import cn.xgpjun.xgpequipmentslot.armorSet.ArmorSet;
 import cn.xgpjun.xgpequipmentslot.database.DataManager;
@@ -78,6 +79,8 @@ public class EquipmentSlotInventory extends XESHolder {
             item = ArmorSet.addArmorSetLore(item,resultMap);
             inv.setItem(slot,item);
         }
+        InvLoadLayoutEvent event = new InvLoadLayoutEvent(playerSlotInfo.getPlayer(),this);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     @Override
@@ -225,4 +228,5 @@ public class EquipmentSlotInventory extends XESHolder {
     private boolean checkEmptySlot(Player player){
         return  (VersionAdapterUtils.getPlayerEmptySlot(player)<2);
     }
+
 }

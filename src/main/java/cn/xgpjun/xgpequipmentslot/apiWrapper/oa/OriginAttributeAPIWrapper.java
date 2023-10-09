@@ -66,7 +66,7 @@ public class OriginAttributeAPIWrapper implements AttributeAPIWrapper {
     protected AttributeData getAttribute(Player player, String name){
         PlayerSlotInfo playerSlotInfo = DataManager.loadPlayerSlotInfo(player.getUniqueId(),name);
         AttributeData data = new AttributeData();
-        for (ItemStack itemStack: playerSlotInfo.getEquipments().values()){
+        for (ItemStack itemStack: playerSlotInfo.getAllItemStacks()){
             try{
                 if(!isUse(player,itemStack))
                     continue;

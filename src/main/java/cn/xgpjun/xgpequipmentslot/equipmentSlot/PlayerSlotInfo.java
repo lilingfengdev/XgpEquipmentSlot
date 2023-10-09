@@ -11,9 +11,7 @@ import lombok.Data;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +19,13 @@ public class PlayerSlotInfo {
     private transient String name;
     private transient UUID player;
     private Map<Integer, ItemStack> equipments;
+
+
+
+    public Collection<ItemStack> getAllItemStacks(){
+
+        return new HashSet<>(getEquipments().values());
+    }
 
     public String toJson(){
         Gson gson = new GsonBuilder()

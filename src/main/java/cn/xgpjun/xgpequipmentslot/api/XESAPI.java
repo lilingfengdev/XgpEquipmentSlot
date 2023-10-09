@@ -5,13 +5,15 @@ import cn.xgpjun.xgpequipmentslot.database.DataManager;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.AttributeManager;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.EquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.PlayerSlotInfo;
+import lombok.Getter;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class XESAPI {
-
+    @Getter
+    private static Map<String,Map<UUID, List<ItemStack>>> tempItems = new HashMap<>();
     /**
      * 获得指定的物品栏 建议放在异步代码内
      * PlayerSlotInfo 实例的equipments字段 为玩家装备的物品。 键为槽位，值为物品。
@@ -45,6 +47,15 @@ public class XESAPI {
 
     public void setAttributeAPI(@NotNull AttributeAPIWrapper attributeAPI){
         AttributeManager.setAttributeAPI(attributeAPI);
+    }
+
+    public void setTempItems(String key,UUID uuid, List<ItemStack> items){
+        Map<UUID, List<ItemStack>> map = getTempItems().get(key);
+        if (map==null){
+            map = new HashMap<>();
+        }
+        map.put(uuid,items);
+        getTempItems().put(key,map);
     }
 
 }
