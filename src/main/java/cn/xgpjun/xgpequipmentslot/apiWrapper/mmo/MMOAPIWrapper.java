@@ -1,5 +1,6 @@
 package cn.xgpjun.xgpequipmentslot.apiWrapper.mmo;
 
+import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.api.AttributeAPIWrapper;
 import cn.xgpjun.xgpequipmentslot.api.XESAPI;
 import cn.xgpjun.xgpequipmentslot.armorSet.ArmorSet;
@@ -11,8 +12,10 @@ import io.lumine.mythic.lib.api.item.NBTItem;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.interaction.UseItem;
 import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
+import net.Indyuce.mmoitems.api.player.PlayerData;
 import net.Indyuce.mmoitems.api.player.inventory.EquippedItem;
 import net.Indyuce.mmoitems.comp.inventory.PlayerInventory;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +40,7 @@ public class MMOAPIWrapper implements AttributeAPIWrapper, PlayerInventory {
 
     @Override
     public void updateAttribute(Player player) {
+        Bukkit.getScheduler().runTask(XgpEquipmentSlot.getInstance(),()-> PlayerData.get(player).updateInventory());
         ArmorSet.addPotionEffect(player);
     }
 
