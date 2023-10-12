@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.xgpjun</groupId>
+        <artifactId>XgpEquipmentSlot</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>SX-computeV1Expansions</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.xgpjun</groupId>
+            <artifactId>XgpEquipmentSlot</artifactId>
+            <version>1.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>nice</groupId>
+            <artifactId>try</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/[SX副属]Sx-compute[v1.4].jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>github.saukiya</groupId>
+            <artifactId>sxattribute2</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/SX-Attribute-2.0.3.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+</project>
