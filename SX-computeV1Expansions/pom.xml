@@ -6,10 +6,10 @@
     <parent>
         <groupId>cn.xgpjun</groupId>
         <artifactId>XgpEquipmentSlot</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </parent>
 
-    <artifactId>SX-computeV1Expansions</artifactId>
+    <artifactId>SX-computeV2Expansions</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>cn.xgpjun</groupId>
             <artifactId>XgpEquipmentSlot</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -30,7 +30,7 @@
             <artifactId>try</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/[SX副属]Sx-compute[v1.4].jar</systemPath>
+            <systemPath>${basedir}/libs/Sx-Compute(1).jar</systemPath>
         </dependency>
         <dependency>
             <groupId>github.saukiya</groupId>

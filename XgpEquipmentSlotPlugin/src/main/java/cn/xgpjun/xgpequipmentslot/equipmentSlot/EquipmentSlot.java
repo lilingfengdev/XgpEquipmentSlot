@@ -74,6 +74,14 @@ public class EquipmentSlot {
             }
         }catch (Exception ignored){
         }
+        //建议额外配置
+        if(!slot.getOther().isEmpty()){
+            for (Map.Entry<String,String> e:slot.getOther().entrySet()){
+                if (NMSUtils.checkTag(equipment,e.getKey(),e.getValue())){
+                    return true;
+                }
+            }
+        }
         //检验tag
         if(slot.getType()!=null){
             if(NMSUtils.checkTag(equipment,"XgpES",slot.getType())){

@@ -60,6 +60,8 @@ items:
       lore: "头盔"
       #使用正则表达式匹配lore, 你会的话肯定会, 不会的话我也没办法.
       regex: ".*?头盔.*"
+      other:
+        MYTHIC_TYPE: "Thunder"
   "B":
     material: STAINED_GLASS_PANE
     damage: 1

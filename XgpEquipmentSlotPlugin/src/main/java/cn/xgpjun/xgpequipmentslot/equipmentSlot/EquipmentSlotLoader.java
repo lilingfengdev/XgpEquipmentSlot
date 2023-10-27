@@ -111,7 +111,13 @@ public class EquipmentSlotLoader {
                     String type = item.getString("equipmentSlot.type");
                     String lore2 = item.getString("equipmentSlot.lore");
                     String regex = item.getString("equipmentSlot.regex");
-                    equipmentSlot.put(key,new Slot(type,lore2,regex));
+                    Map<String,String> other = new HashMap<>();
+                    if (item.get("equipmentSlot.other")!=null){
+                        for (String s:item.getKeys(false)){
+                            other.put(s,item.getString("equipmentSlot.other."+s));
+                        }
+                    }
+                    equipmentSlot.put(key,new Slot(type,lore2,regex,other));
                 }
             }
             for(int i=0;i<layout.size()*9;i++){
