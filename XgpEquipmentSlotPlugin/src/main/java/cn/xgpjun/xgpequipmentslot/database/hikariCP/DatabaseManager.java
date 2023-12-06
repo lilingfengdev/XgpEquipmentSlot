@@ -132,7 +132,7 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
-
+    @SuppressWarnings("all")
     public void dropPrimaryKey(){
         try(Connection connection = getDataSource().getConnection();
             Statement statement = connection.createStatement()) {

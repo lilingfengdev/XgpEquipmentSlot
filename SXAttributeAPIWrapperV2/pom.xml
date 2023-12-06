@@ -34,13 +34,34 @@
                     <scope>system</scope>
                     <systemPath>${basedir}/libs/ZF-Runes.jar</systemPath>
                 </dependency>
+
         <dependency>
-            <groupId>com.github</groupId>
-            <artifactId>ZF-Rues</artifactId>
+            <groupId>github.saukiya</groupId>
+            <artifactId>ZF-Rune1</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/SX-Compute.jar</systemPath>
+            <systemPath>${basedir}/libs/定制额外戴BGInventory.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>github.saukiya</groupId>
+            <artifactId>ZF-Runes2</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/定制宝石ProMax.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>github.saukiya</groupId>
+            <artifactId>ZF-Runes3</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/BGAttribute.jar</systemPath>
+        </dependency><dependency>
+        <groupId>github.saukiya</groupId>
+        <artifactId>ZF-Runes5</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${basedir}/libs/HolographicDisplays.jar</systemPath>
+    </dependency>
         <dependency>
             <groupId>cn.xgpjun</groupId>
             <artifactId>XgpEquipmentSlot</artifactId>

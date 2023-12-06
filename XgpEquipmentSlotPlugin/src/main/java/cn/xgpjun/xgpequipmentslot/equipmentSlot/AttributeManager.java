@@ -4,6 +4,7 @@ import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.api.AttributeAPIWrapper;
 import cn.xgpjun.xgpequipmentslot.api.event.UpdateAttributeEvent;
 import cn.xgpjun.xgpequipmentslot.apiWrapper.BlankAPIWrapper;
+import cn.xgpjun.xgpequipmentslot.database.DataManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -20,7 +21,7 @@ public class AttributeManager {
 
     }
     public static void addAttribute(Player player){
-        if(player==null||!player.isOnline()){
+        if(player==null||!player.isOnline()|| !DataManager.temp.containsKey(player.getUniqueId())){
             return;
         }
         Event event = new UpdateAttributeEvent(player.getUniqueId());

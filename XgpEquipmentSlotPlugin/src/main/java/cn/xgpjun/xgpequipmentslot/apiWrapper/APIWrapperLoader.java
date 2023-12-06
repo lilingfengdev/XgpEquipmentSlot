@@ -2,6 +2,8 @@ package cn.xgpjun.xgpequipmentslot.apiWrapper;
 
 import cn.xgpjun.xgpequipmentslot.XgpEquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.api.AttributeAPIWrapper;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +38,11 @@ public class APIWrapperLoader {
                                     if (AttributeAPIWrapper.class.isAssignableFrom(targetClass)) {
                                         AttributeAPIWrapper attributeAPI = (AttributeAPIWrapper) targetClass.newInstance();
                                         attributeAPI.register();
+                                        if(attributeAPI instanceof Listener){
+                                            Bukkit.getPluginManager().registerEvents((Listener) attributeAPI,XgpEquipmentSlot.getInstance());
+                                        }
                                     }
+
                                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                                     e.printStackTrace();
                                 }

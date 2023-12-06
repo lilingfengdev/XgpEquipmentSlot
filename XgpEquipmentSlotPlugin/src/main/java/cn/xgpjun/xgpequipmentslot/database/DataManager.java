@@ -74,6 +74,9 @@ public class DataManager {
                 redis.expire(playerSlotKey,300L);
             }
         }
+        if (playerSlotInfo==null){
+            playerSlotInfo = new PlayerSlotInfo(name,player,new HashMap<>());
+        }
         return playerSlotInfo;
     }
 

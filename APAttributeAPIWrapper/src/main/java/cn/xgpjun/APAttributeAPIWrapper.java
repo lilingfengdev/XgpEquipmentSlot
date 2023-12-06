@@ -8,16 +8,21 @@ import cn.xgpjun.xgpequipmentslot.database.DataManager;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.AttributeManager;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.EquipmentSlot;
 import cn.xgpjun.xgpequipmentslot.equipmentSlot.PlayerSlotInfo;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.serverct.ersha.api.AttributeAPI;
+import org.serverct.ersha.api.event.attribute.AttrUpdateRuntimeEvent;
 import org.serverct.ersha.attribute.data.AttributeSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class APAttributeAPIWrapper implements AttributeAPIWrapper {
+public class APAttributeAPIWrapper implements AttributeAPIWrapper, Listener {
 
     @Override
     public boolean isUse(LivingEntity entity, ItemStack item) {
@@ -65,6 +70,14 @@ public class APAttributeAPIWrapper implements AttributeAPIWrapper {
 
     @Override
     public String getVersion() {
-        return "1.0";
+        return "1.1";
+    }
+
+    @EventHandler
+    public void apUpdate(AttrUpdateRuntimeEvent e){
+        Entity entity = e.getAttributeData().sourceEntity;
+        if (entity instanceof Player){
+            Bukkit.getScheduler().runTaskAsynchronously(XgpEquipmentSlot.getInstance(),()->AttributeManager.getAttributeAPI().updateAttribute((Player) entity));
+        }
     }
 }

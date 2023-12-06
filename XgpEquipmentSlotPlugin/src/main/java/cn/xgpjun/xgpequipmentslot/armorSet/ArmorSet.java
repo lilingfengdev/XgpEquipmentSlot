@@ -8,6 +8,7 @@ import cn.xgpjun.xgpequipmentslot.utils.MyItemBuilder;
 import cn.xgpjun.xgpequipmentslot.utils.NMSUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -65,40 +66,68 @@ public class ArmorSet {
                 }
             }
         }
+        Player player = Bukkit.getPlayer(playerSlotInfo.getPlayer());
+        if (player!=null&&player.getEquipment()!=null){
+            for (ItemStack item:player.getEquipment().getArmorContents()){
+                if (item==null||item.getItemMeta()==null){
+                    continue;
+                }
+                for (String name:map.keySet()){
+                    if (containLore(armorSets.get(name).lore,item)||NMSUtils.checkTag(item,"XgpES_Set",armorSets.get(name).type)){
+                        map.put(name,map.get(name)+1);
+                    }
+                }
+            }
+        }
         return map;
     }
     public static void addPotionEffect(Player player){
         if(!player.isOnline()){
             return;
         }
+        List<ItemStack> allEquips = new ArrayList<>();
         List<PotionEffect> effects = new ArrayList<>();
         for(String equipName: EquipmentSlot.equipmentSlots.keySet()){
             PlayerSlotInfo playerSlotInfo = DataManager.loadPlayerSlotInfo(player.getUniqueId(),equipName);
+            allEquips.addAll(playerSlotInfo.getAllItemStacks());
+        }
 
-            Map<String,Integer> map = new HashMap<>();
-            for (ArmorSet armorSet :armorSets.values()){
-                map.put(armorSet.name, 0);
-            }
-            for(ItemStack item:playerSlotInfo.getAllItemStacks()){
-                if (item.getItemMeta()==null||!item.getItemMeta().hasLore())
+        Map<String,Integer> map = new HashMap<>();
+        for (ArmorSet armorSet :armorSets.values()){
+            map.put(armorSet.name, 0);
+        }
+
+        if (player.getEquipment() != null){
+            for (ItemStack item:player.getEquipment().getArmorContents()){
+                if (item==null||item.getItemMeta()==null){
                     continue;
-                for (String name: map.keySet()){
-                    if(containLore(armorSets.get(name).lore,item)|| NMSUtils.checkTag(item,"XgpES_Set",armorSets.get(name).type)||regexLore(armorSets.get(name).regex,item)){
+                }
+                for (String name:map.keySet()){
+                    if (containLore(armorSets.get(name).lore,item)||NMSUtils.checkTag(item,"XgpES_Set",armorSets.get(name).type)){
                         map.put(name,map.get(name)+1);
                     }
                 }
             }
-            map.forEach((String name,Integer count)->{
-                if(count>0){
-                    ArmorSet armorSet = armorSets.get(name);
-                    for (int i=count;i>0;i--){
-                        if(armorSet.potions.containsKey(i)){
-                            effects.addAll(armorSet.getPotions().get(i));
-                        }
+        }
+        for(ItemStack item:allEquips){
+            if (item.getItemMeta()==null||!item.getItemMeta().hasLore())
+                continue;
+            for (String name: map.keySet()){
+                if(containLore(armorSets.get(name).lore,item)|| NMSUtils.checkTag(item,"XgpES_Set",armorSets.get(name).type)||regexLore(armorSets.get(name).regex,item)){
+                    map.put(name,map.get(name)+1);
+                }
+            }
+        }
+        map.forEach((String name,Integer count)->{
+            if(count>0){
+                ArmorSet armorSet = armorSets.get(name);
+                for (int i=count;i>0;i--){
+                    if(armorSet.potions.containsKey(i)){
+                        effects.addAll(armorSet.getPotions().get(i));
                     }
                 }
-            });
-        }
+            }
+        });
         Potions.add(player,effects);
     }
     private static boolean containLore(String target,ItemStack item){
